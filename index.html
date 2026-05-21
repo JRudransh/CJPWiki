@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CJP Wiki</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #1D3557;
+      --saffron: #F4A261;
+      --green: #2A9D8F;
+      --white: #FDFDFD;
+      --gray: #E5E7EB;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #0d2340 0%, #1D3557 100%);
+      color: white;
+      padding: 50px 20px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: var(--white);
+      border-radius: 100% 100% 0 0;
+    }
+
+    .top-badge {
+      background: var(--saffron);
+      color: var(--navy);
+      width: fit-content;
+      margin: auto;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 30px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    h1 span {
+      color: var(--saffron);
+    }
+
+    .tagline {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .timer {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .timer-box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 25px;
+      border-radius: 20px;
+      min-width: 130px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .timer-box h2 {
+      font-size: 3rem;
+      color: var(--saffron);
+    }
+
+    .timer-box p {
+      margin-top: 10px;
+      opacity: 0.8;
+      letter-spacing: 1px;
+    }
+
+    .release {
+      text-align: center;
+      margin-top: 35px;
+      font-size: 1.1rem;
+    }
+
+    .release strong {
+      color: var(--saffron);
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+
+    .section-sub {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+      color: #555;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .features {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--gray);
+      border-radius: 22px;
+      padding: 35px 25px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(42,157,143,0.1);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: auto auto 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .steps {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: rgba(244,162,97,0.15);
+      color: var(--saffron);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: auto auto 20px;
+    }
+
+    .support-box {
+      margin-top: 70px;
+      background: linear-gradient(135deg, var(--green), #24867b);
+      border-radius: 30px;
+      padding: 50px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .support-box h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .support-box p {
+      line-height: 1.8;
+      opacity: 0.95;
+    }
+
+    .insta {
+      display: inline-block;
+      margin-top: 25px;
+      background: var(--saffron);
+      color: var(--navy);
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 50px 20px;
+      margin-top: 80px;
+    }
+
+    footer p {
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    @media(max-width: 768px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .support-box {
+        padding: 35px 25px;
+      }
+
+      .timer-box {
+        min-width: 100px;
+      }
+
+      .timer-box h2 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero">
+
+    <div class="container">
+
+      <h1>CJP <span>Wiki</span></h1>
+
+      <p class="tagline">
+        Information. Transparency. Accountability.
+      </p>
+
+      <div class="top-badge">
+        🚀 COMING SOON
+      </div>
+
+      <div class="timer" id="timer">
+
+        <div class="timer-box">
+          <h2 id="days">00</h2>
+          <p>DAYS</p>
+        </div>
+
+        <div class="timer-box">
+          <h2 id="hours">00</h2>
+          <p>HOURS</p>
+        </div>
+
+        <div class="timer-box">
+          <h2 id="minutes">00</h2>
+          <p>MINUTES</p>
+        </div>
+
+        <div class="timer-box">
+          <h2 id="seconds">00</h2>
+          <p>SECONDS</p>
+        </div>
+
+      </div>
+
+      <div class="release">
+        Official Release On <br><br>
+        <strong>15 June 2026, 12:00 PM IST</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <section>
+
+    <div class="container">
+
+      <h2 class="section-title">
+        What is CJP Wiki?
+      </h2>
+
+      <p class="section-sub">
+        CJP Wiki is a public transparency and relationship intelligence platform
+        that helps people explore publicly available information, timelines,
+        relationships, organizational structures, political history,
+        investigations, tenders, and evidence-backed records in one place.
+      </p>
+
+      <div class="features">
+
+        <div class="card">
+          <div class="icon">📄</div>
+          <h3>Evidence Based</h3>
+          <p>
+            Every visible claim or relationship is backed by publicly available sources or evidence.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🕸️</div>
+          <h3>Relationship Mapping</h3>
+          <p>
+            Trace direct and indirect relationships between people, companies, and organizations.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📅</div>
+          <h3>Timeline Tracking</h3>
+          <p>
+            Explore important events, appointments, investigations, affiliations, and changes over time.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🏛️</div>
+          <h3>Public Profiles</h3>
+          <p>
+            View profiles of political candidates, organizations, companies, public entities, and more.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔍</div>
+          <h3>Source Transparency</h3>
+          <p>
+            Inspect attached sources, evidence links, public records, and historical revisions.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🌍</div>
+          <h3>Community Driven</h3>
+          <p>
+            Built as an open and collaborative public knowledge platform for transparency and accountability.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section style="background:#f7f7f7;">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Community Contribution Rules
+      </h2>
+
+      <p class="section-sub">
+        To maintain quality, prevent spam, and protect platform integrity,
+        contribution access is gradually enabled over time.
+      </p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Create Account</h3>
+          <p>
+            Usernames are automatically generated for privacy and consistency.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>15 Day Cooldown</h3>
+          <p>
+            New accounts must complete a waiting period before posting or reviewing.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Build Reputation</h3>
+          <p>
+            Contribution privileges expand gradually through trusted participation.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Community Trust</h3>
+          <p>
+            Additional review and moderation systems help maintain data integrity.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="container">
+
+      <div class="support-box">
+
+        <div>
+          <h2>
+            Supporting Digital Transparency
+          </h2>
+
+          <p>
+            I am requesting to be an upcoming candidate to become
+            Minister of MeitY from CJP.
+            <br><br>
+            If you support transparency, open public information,
+            and technology-driven accountability,
+            please support and follow the journey.
+          </p>
+        </div>
+
+        <div>
+          <h2>
+            Follow on Instagram
+          </h2>
+
+          <a class="insta" href="https://instagram.com/techguyassam" target="_blank">
+            @techguyassam
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    <p>
+      © 2026 CJP Wiki. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+
+    const targetDate = new Date("June 15, 2026 12:00:00 GMT+0530").getTime();
+
+    function updateTimer() {
+
+      const now = new Date().getTime();
+
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerHTML = days;
+      document.getElementById("hours").innerHTML = hours;
+      document.getElementById("minutes").innerHTML = minutes;
+      document.getElementById("seconds").innerHTML = seconds;
+    }
+
+    updateTimer();
+
+    setInterval(updateTimer, 1000);
+
+  </script>
+
+</body>
+</html>
